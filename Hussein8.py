@@ -1,4 +1,17 @@
+import threading
+from flask import Flask
+import os
 
+app = Flask(__name__)
+@app.route('/')
+def home():
+    return "Bot is running!"
+
+def run_web():
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host='0.0.0.0', port=port)
+
+threading.Thread(target=run_web, daemon=True).start()
 BOT_TOKEN = "8660583947:AAHfX8R5p1eqtOIoBBvRBkLhQQZ0Tm4x1po"
 ADMIN_ID = 7262235922
 
